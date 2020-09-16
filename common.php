@@ -2350,7 +2350,12 @@ function render_list($path = '', $files = '')
             $html = str_replace('<!--constStr@ClicktoEdit-->', getconstStr('ClicktoEdit'), $html);
             $html = str_replace('<!--constStr@CancelEdit-->', getconstStr('CancelEdit'), $html);
             $html = str_replace('<!--constStr@Save-->', getconstStr('Save'), $html);
-            while (strpos($html, '<!--TxtContent-->')) $html = str_replace('<!--TxtContent-->', htmlspecialchars(curl('GET' . $files[$_SERVER['DownurlStrName']])['body']), $html);
+            while (strpos($html, '<!--TxtContent-->')) {
+                $tmp = curl('GET', $files[$_SERVER['DownurlStrName']]);
+                $tmp1 = $tmp['body'];
+                error_log('TTTXXXTTT : URL:' . $files[$_SERVER['DownurlStrName']] . ' stat:' . $tmp['stat'] . ' body:' . $tmp1);
+                $html = str_replace('<!--TxtContent-->', htmlspecialchars($tmp1), $html);
+            }
             $html = str_replace('<!--constStr@FileNotSupport-->', getconstStr('FileNotSupport'), $html);
 
 
