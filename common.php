@@ -2351,7 +2351,8 @@ function render_list($path = '', $files = '')
             $html = str_replace('<!--constStr@CancelEdit-->', getconstStr('CancelEdit'), $html);
             $html = str_replace('<!--constStr@Save-->', getconstStr('Save'), $html);
             while (strpos($html, '<!--TxtContent-->')) {
-                $tmp = curl('GET', $files[$_SERVER['DownurlStrName']], '', [ 'Authorization' => 'Bearer ' . $access_token ], 1);
+                //$tmp = curl('GET', $files[$_SERVER['DownurlStrName']], '', [ 'Authorization' => 'Bearer ' . $access_token ], 1);
+                $tmp = curl('GET', $files[$_SERVER['DownurlStrName']], '', [], 1);
                 $tmp1 = $tmp['body'];
                 error_log('TTTXXXTTT : URL:' . $files[$_SERVER['DownurlStrName']] . ' stat:' . $tmp['stat'] . ' Header:' . json_encode($tmp['returnhead']));
                 $html = str_replace('<!--TxtContent-->', htmlspecialchars($tmp1), $html);
