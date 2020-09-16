@@ -925,7 +925,9 @@ function message($message, $title = 'Message', $statusCode = 200)
     <body>
         <h1>' . $title . '</h1>
         <p>
+
 ' . $message . '
+
         </p>
     </body>
 </html>
@@ -1361,7 +1363,7 @@ function fetch_files($path = '/')
             if (isset($parentfiles['children'][$filename][$_SERVER['DownurlStrName']])) {
                 if (in_array(splitlast($filename,'.')[1], $exts['txt'])) {
                     if (!(isset($parentfiles['children'][$filename]['content'])&&$parentfiles['children'][$filename]['content']['stat']==200)) {
-                        $content1 = curl_request($parentfiles['children'][$filename][$_SERVER['DownurlStrName']]);
+                        $content1 = curl('GET', $parentfiles['children'][$filename][$_SERVER['DownurlStrName']]);
                         $parentfiles['children'][$filename]['content'] = $content1;
                         savecache('path_' . $parentpath, $parentfiles);
                     }
