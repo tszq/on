@@ -566,6 +566,7 @@ function isHideFile($name)
 
 function getcache($str, $disktag = '')
 {
+    if ($str == 'access_token') error_log('DISKTAG: ' . $disktag);
     $cache = filecache($disktag);
     return $cache->fetch($str);
 }
