@@ -1996,7 +1996,7 @@ function render_list($path = '', $files = '')
     if (strpos(__DIR__, ':')) $slash = '\\';
 
     if (isset($files['children']['index.html']) && !$_SERVER['admin']) {
-        $htmlcontent = fetch_files(spurlencode(path_format(urldecode($path) . '/index.html'),'/'))['content'];
+        $htmlcontent = fetch_files(spurlencode(path_format($path . '/index.html'),'/'))['content'];
         return output($htmlcontent['body'], $htmlcontent['stat']);
     }
     $path = str_replace('%20','%2520',$path);
@@ -2719,7 +2719,7 @@ function render_list($path = '', $files = '')
         $html = $tmp[0];
         $tmp = splitfirst($tmp[1], '<!--HeadomfEnd-->');
         if (isset($files['children']['head.omf'])) {
-            $headomf = str_replace('<!--HeadomfContent-->', fetch_files(spurlencode(path_format(urldecode($path) . '/head.omf'),'/'))['content']['body'], $tmp[0]);
+            $headomf = str_replace('<!--HeadomfContent-->', fetch_files(spurlencode(path_format($path . '/head.omf'),'/'))['content']['body'], $tmp[0]);
         }
         $html .= $headomf . $tmp[1];
         
@@ -2727,7 +2727,7 @@ function render_list($path = '', $files = '')
         $html = $tmp[0];
         $tmp = splitfirst($tmp[1], '<!--HeadmdEnd-->');
         if (isset($files['children']['head.md'])) {
-            $headmd = str_replace('<!--HeadmdContent-->', fetch_files(spurlencode(path_format(urldecode($path) . '/head.md'),'/'))['content']['body'], $tmp[0]);
+            $headmd = str_replace('<!--HeadmdContent-->', fetch_files(spurlencode(path_format($path . '/head.md'),'/'))['content']['body'], $tmp[0]);
             $html .= $headmd . $tmp[1];
             while (strpos($html, '<!--HeadmdStart-->')) {
                 $html = str_replace('<!--HeadmdStart-->', '', $html);
@@ -2760,7 +2760,7 @@ function render_list($path = '', $files = '')
         $html = $tmp[0];
         $tmp = splitfirst($tmp[1], '<!--ReadmemdEnd-->');
         if (isset($files['children']['readme.md'])) {
-            $Readmemd = str_replace('<!--ReadmemdContent-->', fetch_files(spurlencode(path_format(urldecode($path) . '/readme.md'),'/'))['content']['body'], $tmp[0]);
+            $Readmemd = str_replace('<!--ReadmemdContent-->', fetch_files(spurlencode(path_format($path . '/readme.md'),'/'))['content']['body'], $tmp[0]);
             $html .= $Readmemd . $tmp[1];
             while (strpos($html, '<!--ReadmemdStart-->')) {
                 $html = str_replace('<!--ReadmemdStart-->', '', $html);
@@ -2782,7 +2782,7 @@ function render_list($path = '', $files = '')
         $html = $tmp[0];
         $tmp = splitfirst($tmp[1], '<!--FootomfEnd-->');
         if (isset($files['children']['foot.omf'])) {
-            $Footomf = str_replace('<!--FootomfContent-->', fetch_files(spurlencode(path_format(urldecode($path) . '/foot.omf'),'/'))['content']['body'], $tmp[0]);
+            $Footomf = str_replace('<!--FootomfContent-->', fetch_files(spurlencode(path_format($path . '/foot.omf'),'/'))['content']['body'], $tmp[0]);
         }
         $html .= $Footomf . $tmp[1];
 
